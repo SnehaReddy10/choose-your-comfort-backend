@@ -13,7 +13,7 @@ const PRODUCT = {
 
 const USER = {
   NOT_FOUND: 'User not found. Please create new account',
-  INVALID_CREDENTIALS: 'Invalid Credentials',
+  INVALID_CREDENTIALS: 'Invalid Credentials. Please try again.',
   USER_ALREADY_EXISTS: 'User already exists. Please login',
   PASSWORD_SHOULD_MATCH: 'Password should match',
   USERNAME_MAX_50: 'Username should be of length less than 50',
