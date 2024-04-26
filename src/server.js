@@ -19,7 +19,12 @@ mongo.connect(process.env.MONGO_URL).then(() => console.log('Connected to DB'));
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin:
+      'https://choose-your-comfort-dzg86zfdq-viar30s-projects.vercel.app/',
+  })
+);
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
