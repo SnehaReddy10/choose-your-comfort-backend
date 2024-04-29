@@ -17,14 +17,27 @@ require('dotenv').config();
 
 mongo.connect(process.env.MONGO_URL).then(() => console.log('Connected to DB'));
 
+const allowedOrigins = [
+  'https://choose-your-comfort-dzg86zfdq-viar30s-projects.vercel.app',
+  'https://choose-your-comfort.vercel.app/wish-list',
+  'http://localhost:5173',
+];
+
 const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin:
-      'https://choose-your-comfort-dzg86zfdq-viar30s-projects.vercel.app/',
+    origin: (origin, callback) => {
+      console.log(origin);
+      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
   })
 );
+
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
