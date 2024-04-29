@@ -19,7 +19,7 @@ mongo.connect(process.env.MONGO_URL).then(() => console.log('Connected to DB'));
 
 const allowedOrigins = [
   'https://choose-your-comfort-dzg86zfdq-viar30s-projects.vercel.app',
-  'https://choose-your-comfort.vercel.app/wish-list',
+  'https://choose-your-comfort.vercel.app',
   'http://localhost:5173',
 ];
 
@@ -28,7 +28,6 @@ app.use(express.json());
 app.use(
   cors({
     origin: (origin, callback) => {
-      console.log(origin);
       if (!origin || allowedOrigins.indexOf(origin) !== -1) {
         callback(null, true);
       } else {
@@ -49,7 +48,7 @@ app.use(compression());
 
 const limiter = RateLimit({
   windowMs: 1 * 60 * 1000,
-  max: 20,
+  max: 100,
 });
 
 app.use(limiter);

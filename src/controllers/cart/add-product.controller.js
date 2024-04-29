@@ -7,7 +7,6 @@ const ProductAddedToCart = require('../../models/ProductAddedToCart');
 const AddProductController = async (req, res) => {
   try {
     const productId = req.params.productId;
-    console.log('add product to cart ', productId);
 
     const existingCart = await Cart.findOne({ userId: req.user._id });
 
