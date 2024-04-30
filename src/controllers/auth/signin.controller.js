@@ -21,7 +21,7 @@ const SigninController = async (req, res) => {
 
     if (!success) {
       const errors = error.errors.map((x) => x.message);
-      return res.status(411).json({ errors: errors });
+      return res.status(411).json({ error: errors });
     }
 
     const existingUser = await User.findOne({ username }).exec();
