@@ -13,6 +13,7 @@ const faqRouter = require('./routes/faq');
 const compression = require('compression');
 const RateLimit = require('express-rate-limit');
 const helmet = require('helmet');
+const paymentRouter = require('./routes/payments');
 require('dotenv').config();
 
 mongo.connect(process.env.MONGO_URL).then(() => console.log('Connected to DB'));
@@ -65,6 +66,7 @@ app.use(Auth);
 app.use('/user', userRouter);
 app.use('/cart', cartRouter);
 app.use('/wishlist', wishListRouter);
+app.use('/payment', paymentRouter);
 
 app.listen(process.env.PORT, () =>
   console.log(`Listening to port ${process.env.PORT}`)
