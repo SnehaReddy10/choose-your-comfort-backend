@@ -1,0 +1,39 @@
+version: '3.5'
+services:
+  app:
+    build: .
+    container_name: furniture
+    environment:
+      - MONGO_URL=mongodb://mongo_db:27017/furniture
+    ports:
+      - '5000:5000'
+    depends_on:
+      mongo_db:
+        condition: service_healthy
+    networks:
+      - backend
+
+  mongo_db:
+    image: mongo
+    container_name: mongo_db
+    restart: always
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - 27017:27017
+    healthcheck:
+      test: echo 'db.runCommand({serverStatus:1}).ok' | mongosh admin -u admin -p secret --quiet
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    networks:
+      - backend
+
+volumes:
+  mongo-data:
+    external: false
+
+networks:
+  backend:
+    driver: bridge

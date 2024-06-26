@@ -16,7 +16,10 @@ const helmet = require('helmet');
 const paymentRouter = require('./routes/payments');
 require('dotenv').config();
 
-mongo.connect(process.env.MONGO_URL).then(() => console.log('Connected to DB'));
+mongo
+  .connect(process.env.MONGO_URL)
+  .then(() => console.log('Connected to DB'))
+  .catch((err) => console.error('Mongo Connection Failed ', err));
 
 const allowedOrigins = [
   'https://choose-your-comfort-dzg86zfdq-viar30s-projects.vercel.app',
