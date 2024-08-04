@@ -2,6 +2,8 @@
 
 ![Thumbnail](public/thumbnail.png)
 
+[Go To Website](https://choose-your-comfort.vercel.app/)
+
 A responsive furniture selling website built using the MERN stack (MongoDB, Express, React, Node.js), styled with Tailwind CSS, integrated with Stripe for payments, and deployed using NGINX as a reverse proxy.
 
 ## Table of Contents
